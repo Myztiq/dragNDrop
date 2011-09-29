@@ -1,0 +1,79 @@
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
+<body>
+	<style>
+		.draggable{
+			width:100px;
+			height:100px;
+			border: 1px solid grey;
+			line-height:100px;
+			text-align: center;
+			cursor: move;
+			float:left;
+			margin: 2px;
+		}
+		.droppable{
+			width:104px;
+			min-height: 300px;
+			border: 4px solid grey;
+			float:left;
+			padding: 10px;
+		}
+	</style>
+	<script>
+		jQuery(document).ready(function(){
+			var idCounter = 1;
+			jQuery(".draggable").draggable({
+				revert: true
+			});
+			jQuery(".droppable,.origin").droppable({
+				drop: function( event, ui ) {
+					//Make sure the element has an ID
+					if(!jQuery(this).attr("id")){
+						jQuery(this).attr("id","id"+idCounter++);
+					}
+					//If its not already a child add it, otherwise make sure it stays where it was
+					if(!jQuery(ui.draggable).is("#"+jQuery(this).attr("id")+" *")){
+						console.log("Appending!");
+						jQuery(ui.draggable).css("top","");
+						jQuery(ui.draggable).css("left","");
+						jQuery(this).append(ui.draggable);
+					}
+				}
+			});
+		});
+	</script>
+	<div class="origin" style="height:120px;">
+		<div class="draggable">
+			Not Apples
+		</div>
+		<div class="draggable">
+			Pants
+		</div>
+		<div class="draggable">
+			Apples
+		</div>
+	</div>
+	<div>
+		<div class="droppable">
+
+		</div>
+		<div class="droppable">
+
+		</div>
+		<div class="droppable">
+
+		</div>
+		<div class="droppable">
+
+		</div>
+		<div class="droppable">
+
+		</div>
+		<div class="droppable">
+
+		</div>
+	</div>
+</body>
+</html>
