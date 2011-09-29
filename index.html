@@ -35,7 +35,6 @@
 					}
 					//If its not already a child add it, otherwise make sure it stays where it was
 					if(!jQuery(ui.draggable).is("#"+jQuery(this).attr("id")+" *")){
-						console.log("Appending!");
 						jQuery(ui.draggable).css("top","");
 						jQuery(ui.draggable).css("left","");
 						jQuery(this).append(ui.draggable);
